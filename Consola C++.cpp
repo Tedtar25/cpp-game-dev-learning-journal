@@ -31,325 +31,21 @@ Para usar std::string, ocupamos agregar:
 // ##CAPITULO 3 - CAPITULO 3 - CAPITULO 3 - CAPITULO 3##
 // #####################################################
 
+
+// Prototipos de funciones
+//
+// A partir de aqui por simplicidad dejare un solo codigo pero se haran varios commits con los cambios.
+
 #include <iostream>
 #include <string>
 
-/*
-void mostrarTitulo() {
-    std::cout << "======================" << std::endl;
-    std::cout << "     DUNGEON C++      " << std::endl;
-    std::cout << "======================" << std::endl;
-}
+void show_main_title();
+void show_game_menu();
+void show_character_info(std::string name, int hp, int attack, int defense);
+void show_game_store();
+int calculate_damage(int attack, int defense);
+int attack_enemy(int enemy_hp, int damage);
 
-int main() {
-    mostrarTitulo();
-
-    return 0;
-}
-*/
-
-//EJERCICIO 1 - Crear una funcion y llamar desde main()
-/*
-void mostrar_bienvenida() {
-    std::cout << "Bienvenido a Dungeon C++" << std::endl;
-    std::cout << "Preparate para comenzar tu aventura" << std::endl;
-}
-*/
-
-//EJERCICIO 2 - Funcion Imprimir Tienda
-/*
-void mostrar_tienda() {
-    std::cout << "===== TIENDA =====" << std::endl;
-    std::cout << "1. Pocion de vida - 20 monedas" << std::endl;
-    std::cout << "2. Espada basica - 50 monedas" << std::endl;
-    std::cout << "3. Escudo de madera - 35 monedas" << std::endl;
-}
-*/
-
-//EJERCICIO 3 - Mostrar ficha de personaje
-/*
-void mostrar_ficha_personaje() {
-    std::string character_name;
-    int hp = 100;
-    int character_money = 100;
-
-    std::cin >> character_name;
-    std::cout << "Nombre: " << character_name << std::endl;
-    std::cout << "HP: " << hp << std::endl;
-    std::cout << "Monedas: " << character_money << std::endl;
-}
-
-int main() {
-    //mostrar_bienvenida();
-    //mostrar_tienda();
-    std::cout << "Elige el nombre de tu personaje:" << std::endl;
-    mostrar_ficha_personaje();
-
-    return 0;
-}
-*/
-
-//Mini reto del Capítulo 3 Primera parte - Convierte tu mini proyecto de DUNGEON C++ para que use funciones.
-/*
-void show_main_title() {
-    std::cout << "============================" << std::endl;
-    std::cout << "         DUNGEON C++        " << std::endl;
-    std::cout << "============================" << std::endl;
-}
-
-void show_game_menu() {
-    std::cout << std::endl;
-    std::cout << "1. Iniciar aventura" << std::endl;
-    std::cout << "2. Ver personaje" << std::endl;
-    std::cout << "3. Tienda" << std::endl;
-    std::cout << "4. Salir" << std::endl;
-    std::cout << std::endl;
-}
-
-void show_character_info() {
-    std::string nombre = "Mago";
-    int hp = 100;
-    int ataque = 20;
-    int defensa = 10;
-
-    std::cout << std::endl;
-    std::cout << "===== INFO =====" << std::endl;
-    std::cout << "Nombre: " << nombre << std::endl;
-    std::cout << "HP: " << hp << std::endl;
-    std::cout << "Ataque: " << ataque << std::endl;
-    std::cout << "Defensa: " << defensa << std::endl;
-}
-
-void show_game_store() {
-    std::cout << std::endl;
-    std::cout << "===== TIENDA =====" << std::endl;
-    std::cout << std::endl;
-    std::cout << "1. Pocion de vida - 20 monedas" << std::endl;
-    std::cout << "2. Espada basica - 50 monedas" << std::endl;
-    std::cout << "3. Escudo de madera - 35 monedas" << std::endl;
-}
-
-int main() {
-    int option;
-
-    show_main_title();
-    show_character_info();
-    show_game_menu();
-
-    std::cout << "Elige una opcion: ";
-    std::cin >> option;
-
-    if (option == 1) {
-        std::cout << "Iniciando aventura..." << std::endl;
-    }
-    else if (option == 2) {
-        show_character_info();
-    }
-    else if (option == 3) {
-        show_game_store();
-    }
-    else if (option == 4) {
-        std::cout << "Saliendo a escritorio..." << std::endl;
-    }
-    else {
-        std::cout << "Seleccion invalida" << std::endl;
-    }
-
-    return 0;
-}
-*/
-
-//Siguiente concepto: funciones con parámetros
-/*
-void show_character_info(std::string nombre, int hp, int ataque, int defensa) {
-    std::cout << "===== INFO =====" << std::endl;
-    std::cout << "Nombre: " << nombre << std::endl;
-    std::cout << "HP: " << hp << std::endl;
-    std::cout << "Ataque: " << ataque << std::endl;
-    std::cout << "Defensa: " << defensa << std::endl;
-}
-
-int main() {
-    show_character_info("Mago", 100, 20, 10);
-
-    return 0;
-}
-*/
-
-/*
-void show_character_info(std::string name, int hp, int attack, int defense) {
-    std::cout << "====================" << std::endl;
-    std::cout << "        INFO        " << std::endl;
-    std::cout << "====================" << std::endl;
-    std::cout << std::endl;
-    std::cout << "Nombre: " << name << std::endl;
-    std::cout << "HP: " << hp << std::endl;
-    std::cout << "Ataque: " << attack << std::endl;
-    std::cout << "Defensa: " << defense << std::endl;
-}
-
-int main() {
-
-    std::string character_name = "Mago";
-    int character_hp = 100;
-    int character_attack = 15;
-    int character_defense = 10;
-
-    show_character_info(character_name, character_hp, character_attack, character_defense);
-
-    return 0;
-}
-*/
-
-//USAR PARAMETROS EN EL MINI PROYECTO
-/*
-void show_main_title() {
-    std::cout << std::endl;
-    std::cout << "============================" << std::endl;
-    std::cout << "         DUNGEON C++        " << std::endl;
-    std::cout << "============================" << std::endl;
-    std::cout << std::endl;
-}
-
-void show_game_menu() {
-    std::cout << std::endl;
-    std::cout << "1. Iniciar aventura" << std::endl;
-    std::cout << "2. Ver personaje" << std::endl;
-    std::cout << "3. Tienda" << std::endl;
-    std::cout << "4. Salir" << std::endl;
-    std::cout << std::endl;
-}
-
-void show_character_info(std::string name, int hp, int attack, int defense) {
-    std::cout << std::endl;
-    std::cout << "====================" << std::endl;
-    std::cout << "        INFO        " << std::endl;
-    std::cout << "====================" << std::endl;
-    std::cout << std::endl;
-    std::cout << "Nombre: " << name << std::endl;
-    std::cout << "HP: " << hp << std::endl;
-    std::cout << "Ataque: " << attack << std::endl;
-    std::cout << "Defensa: " << defense << std::endl;
-}
-
-void show_game_store() {
-    std::cout << std::endl;
-    std::cout << "===== TIENDA =====" << std::endl;
-    std::cout << std::endl;
-    std::cout << "1. Pocion de vida - 20 monedas" << std::endl;
-    std::cout << "2. Espada basica - 50 monedas" << std::endl;
-    std::cout << "3. Escudo de madera - 35 monedas" << std::endl;
-}
-
-int main() {
-
-    std::string character_name = "Frodo";
-    int character_hp = 100;
-    int character_attack = 15;
-    int character_defense = 10;
-
-    int option;
-
-    show_main_title();
-    show_game_menu();
-
-    std::cout << "Elige una opcion: ";
-    std::cin >> option;
-
-    if (option == 1) {
-        std::cout << "Iniciando aventura..." << std::endl;
-    }
-    else if (option == 2) {
-        show_character_info(character_name, character_hp, character_attack, character_defense);
-    }
-    else if (option == 3) {
-        show_game_store();
-    }
-    else if (option == 4) {
-        std::cout << "Saliendo a escritorio..." << std::endl;
-    }
-    else {
-        std::cout << "Seleccion invalida" << std::endl;
-    }
-
-    return 0;
-}
-*/
-
-//Funciones que regresan valores
-/*
-int calculate_damage(int attack, int defense) {
-    int damage = attack - defense;
-    return damage;
-}
-
-int main() {
-    int player_attack = 20;
-    int enemy_defense = 5;
-
-    int final_damage = calculate_damage(player_attack, enemy_defense);
-
-    std::cout << "Danio causado: " << final_damage << std::endl;
-
-    return 0;
-}
-*/
-
-
-void show_main_title() {
-    std::cout << std::endl;
-    std::cout << "============================" << std::endl;
-    std::cout << "         DUNGEON C++        " << std::endl;
-    std::cout << "============================" << std::endl;
-    std::cout << std::endl;
-}
-
-void show_game_menu() {
-    std::cout << std::endl;
-    std::cout << "1. Iniciar aventura" << std::endl;
-    std::cout << "2. Ver personaje" << std::endl;
-    std::cout << "3. Tienda" << std::endl;
-    std::cout << "4. Salir" << std::endl;
-    std::cout << std::endl;
-}
-
-void show_character_info(std::string name, int hp, int attack, int defense) {
-    std::cout << std::endl;
-    std::cout << "====================" << std::endl;
-    std::cout << "        INFO        " << std::endl;
-    std::cout << "====================" << std::endl;
-    std::cout << std::endl;
-    std::cout << "Nombre: " << name << std::endl;
-    std::cout << "HP: " << hp << std::endl;
-    std::cout << "Ataque: " << attack << std::endl;
-    std::cout << "Defensa: " << defense << std::endl;
-    std::cout << std::endl;
-}
-
-void show_game_store() {
-    std::cout << std::endl;
-    std::cout << "===== TIENDA =====" << std::endl;
-    std::cout << std::endl;
-    std::cout << "1. Pocion de vida - 20 monedas" << std::endl;
-    std::cout << "2. Espada basica - 50 monedas" << std::endl;
-    std::cout << "3. Escudo de madera - 35 monedas" << std::endl;
-    std::cout << std::endl;
-}
-
-int calculate_damage(int attack, int defense) {
-    int damage = attack - defense;
-
-    if (damage < 0) {
-        damage = 0;
-    }
-
-    return damage;
-}
-
-int attack_enemy(int enemy_hp, int damage) {
-    enemy_hp -= damage;
-    return enemy_hp;
-}
 
 int main() {
 
@@ -411,7 +107,57 @@ int main() {
     return 0;
 }
 
+void show_main_title() {
+    std::cout << std::endl;
+    std::cout << "============================" << std::endl;
+    std::cout << "         DUNGEON C++        " << std::endl;
+    std::cout << "============================" << std::endl;
+    std::cout << std::endl;
+}
 
-// Prototipos de funciones
-//
-// A partir de aqui por simplicidad dejare un solo codigo pero se haran varios commits con los cambios.
+void show_game_menu() {
+    std::cout << std::endl;
+    std::cout << "1. Iniciar aventura" << std::endl;
+    std::cout << "2. Ver personaje" << std::endl;
+    std::cout << "3. Tienda" << std::endl;
+    std::cout << "4. Salir" << std::endl;
+    std::cout << std::endl;
+}
+
+void show_character_info(std::string name, int hp, int attack, int defense) {
+    std::cout << std::endl;
+    std::cout << "====================" << std::endl;
+    std::cout << "        INFO        " << std::endl;
+    std::cout << "====================" << std::endl;
+    std::cout << std::endl;
+    std::cout << "Nombre: " << name << std::endl;
+    std::cout << "HP: " << hp << std::endl;
+    std::cout << "Ataque: " << attack << std::endl;
+    std::cout << "Defensa: " << defense << std::endl;
+    std::cout << std::endl;
+}
+
+void show_game_store() {
+    std::cout << std::endl;
+    std::cout << "===== TIENDA =====" << std::endl;
+    std::cout << std::endl;
+    std::cout << "1. Pocion de vida - 20 monedas" << std::endl;
+    std::cout << "2. Espada basica - 50 monedas" << std::endl;
+    std::cout << "3. Escudo de madera - 35 monedas" << std::endl;
+    std::cout << std::endl;
+}
+
+int calculate_damage(int attack, int defense) {
+    int damage = attack - defense;
+
+    if (damage < 0) {
+        damage = 0;
+    }
+
+    return damage;
+}
+
+int attack_enemy(int enemy_hp, int damage) {
+    enemy_hp -= damage;
+    return enemy_hp;
+}
