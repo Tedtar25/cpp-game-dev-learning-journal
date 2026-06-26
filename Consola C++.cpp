@@ -32,7 +32,7 @@ Para usar std::string, ocupamos agregar:
 // #####################################################
 
 
-// Prototipos de funciones
+// Separar responsabilidades mejor
 //
 // A partir de aqui por simplicidad dejare un solo codigo pero se haran varios commits con los cambios.
 
@@ -40,11 +40,24 @@ Para usar std::string, ocupamos agregar:
 #include <string>
 
 void show_main_title();
+
 void show_game_menu();
+
 void show_character_info(std::string name, int hp, int attack, int defense);
+
 void show_game_store();
+
 int calculate_damage(int attack, int defense);
+
 int attack_enemy(int enemy_hp, int damage);
+
+int start_adventure(
+    std::string character_name,
+    int character_attack,
+    std::string enemy_name,
+    int enemy_defense,
+    int enemy_hp
+);
 
 
 int main() {
@@ -73,23 +86,8 @@ int main() {
     std::cin >> option;
 
     if (option == 1) {
-        std::cout << "Iniciando aventura..." << std::endl;
-        std::cout << std::endl;
-        std::cout << character_name << " ataca a " << enemy_goblin_name << std::endl;
-
-        int damage_to_enemy = calculate_damage(character_attack, enemy_goblin_defense);
-
-        std::cout << "Danio causado: " << damage_to_enemy << std::endl;
-
-        enemy_goblin_hp = attack_enemy(enemy_goblin_hp, damage_to_enemy);
-
-        if (enemy_goblin_hp <= 0) {
-            std::cout << enemy_goblin_name << " ha sido derrotado." << std::endl;
-        }
-        else {
-            std::cout << "HP restante de " << enemy_goblin_name << ": " << enemy_goblin_hp << std::endl;
-        }
         
+        enemy_goblin_hp = start_adventure(character_name, character_attack , enemy_goblin_name , enemy_goblin_defense , enemy_goblin_hp );
     }
     else if (option == 2) {
         show_character_info(character_name, character_hp, character_attack, character_defense);
@@ -159,5 +157,31 @@ int calculate_damage(int attack, int defense) {
 
 int attack_enemy(int enemy_hp, int damage) {
     enemy_hp -= damage;
+    return enemy_hp;
+}
+
+int start_adventure(std::string character_name,
+    int character_attack,
+    std::string enemy_name,
+    int enemy_defense,
+    int enemy_hp) {
+
+    std::cout << "Iniciando aventura..." << std::endl;
+    std::cout << std::endl;
+    std::cout << character_name << " ataca a " << enemy_name << std::endl;
+
+    int damage_to_enemy = calculate_damage(character_attack, enemy_defense);
+
+    std::cout << "Danio causado: " << damage_to_enemy << std::endl;
+
+    enemy_hp = attack_enemy(enemy_hp, damage_to_enemy);
+
+    if (enemy_hp <= 0) {
+        std::cout << enemy_name << " ha sido derrotado." << std::endl;
+    }
+    else {
+        std::cout << "HP restante de " << enemy_name << ": " << enemy_hp << std::endl;
+    }
+
     return enemy_hp;
 }
